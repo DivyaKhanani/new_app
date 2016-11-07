@@ -1,0 +1,53 @@
+<ion-view view-title="Vadodara Coupons">
+  <ion-nav-buttons side="right">
+  <a href="" class="button button-icon icon ion-refresh" ng-click="refresh()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+  <div ng-if="loaded" ng-repeat="coupon in couponList track by coupon.Coupon.id">
+  <div class="list">
+
+    <a href="#/app/couponDetails/{{coupon.Coupon.id}}" ng-if="coupon.Coupon.type==true" class="no_decoration">
+      <div class="item">
+        <h2>{{coupon.Coupon.title}}</h2>
+        <p>{{coupon.Coupon.start_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p>
+        <span class="pinned-icon"><i class="ion-bookmark"></i></span>
+      </div>
+
+      <div class="item item-body promoted-image">
+        <img ng-if="coupon.Coupon.image_name != null" class="full-image" ng-src="{{coupon.Coupon.image_name}}">
+        <img ng-if="coupon.Coupon.image_name == null" class="full-image" ng-src="img/no-img.png">
+      </div>
+
+      <div class="item">
+        <p>{{coupon.Coupon.short_desc}}</p>
+      </div>
+    </a>
+
+    <a href="#/app/couponDetails/{{coupon.Coupon.id}}" ng-if="coupon.Coupon.type==false" class="no_decoration">
+      <div class="item item-thumbnail-left thumbnail_list">
+        <img ng-if="coupon.Coupon.image_name != null" ng-src="{{coupon.Coupon.image_name}}">
+        <img ng-if="coupon.Coupon.image_name == null" ng-src="img/no-img.png">
+        <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
+        <div class="leftpadding">
+          <h2>{{coupon.Coupon.title}}</h2>
+          <p>{{coupon.Coupon.short_desc}}</p>
+          <span class="date_font">{{coupon.Coupon.start_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+    </ion-list>
+    <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+      {{error_message}}
+    </div>
+    <ion-infinite-scroll
+      ng-if="!moredata"
+      on-infinite="loadMore()"
+      distance="1%">
+  </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

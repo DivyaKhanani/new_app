@@ -1,0 +1,35 @@
+<ion-view view-title="{{newscatlist[0].subcat_name}}" >
+  <ion-nav-buttons side="right">
+  <a href="" class="button button-icon icon ion-refresh" ng-click="refresh()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+    <div ng-if="loaded" ng-repeat="news in newscatlist track by news.id">
+      <div class="list">
+
+       <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration">
+      <div class="item item-thumbnail-left thumbnail_list">
+        <img ng-src="{{app_url}}{{news.image}}">
+       <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
+        <div class="leftpadding">
+        <h2>{{news.title}}</h2>
+        <p>{{news.short_desc}}</p>
+        <span class="date_font">{{ news.published_date | fromNow}}</span>
+       </div>
+      </div>
+    </a>
+    </div>
+  </div>
+
+  </ion-list>
+
+    <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+      {{error_message}}
+    </div>
+    <ion-infinite-scroll
+      ng-if="!moredata"
+      on-infinite="loadMore()"
+      distance="1%">
+  </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

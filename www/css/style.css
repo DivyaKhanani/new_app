@@ -1,0 +1,467 @@
+/* Empty. Add your own CSS if you like */
+/*Added by divya*/
+.click-more{
+    float: right;
+    color: red !important;
+}
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0;
+  padding-bottom: 0;
+  transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+.float-right{
+	    float: right;
+}
+.float-left{
+	    float: left;
+}
+.line-height-15px {
+  line-height: 15px !important;
+}
+.border-top-radius-25px{
+	border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+.margin-bottom-10px{
+	    margin-bottom: 10px;
+}
+/*end added by divya*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.ng-show{
+	
+	display: block;
+}
+.ng-hide{	
+	display: none;
+}
+.no-border.item.my-item{
+    box-shadow: none;
+border-top:2px solid whitesmoke;
+}
+.item h2{
+	white-space: normal;
+}
+.no_decoration{
+	text-decoration: none;
+}
+
+.thumbnail_list{
+	min-height: 0px;
+	/*padding-bottom: 30px;*/
+	height:72%;
+	max-height:none;
+}
+
+.heading_detail h2{
+	font-size: x-large;
+	font-weight: 100;
+}
+
+.date_font{
+	font-size: 82%;
+	margin-top:-100px !important;
+}
+
+.thumbnail_list img{
+	max-height: 68px !important;
+	height: 100%;
+}
+
+.a.icon.ion-android-share{
+	font-size: 10px;
+}
+.a.icon.ion-refresh{
+	font-size: 10px;
+}
+.icon.ion-loading-d.icon-refreshing{
+	font-family: 'Arial, sans-serif' !important;
+	background:none;
+	background-image: url('../img/auth-info-loader.gif') !important;
+	background-position:  center center !important;
+	color: #EEE !important;
+}
+
+.title.title-center.header-item{
+	font-weight: 400;
+}
+
+/*.list {
+	margin: 0 7px 0 6px;
+	padding: 5px;
+}*/
+
+.item {
+	border:0;
+	box-shadow: 0 0px 2px 1px #ccc;
+}
+
+.title.title-center.header-item {
+	font-size: 20px;
+	text-align: left;
+	padding: 7px 0 0 0;
+}
+
+.bar-header {
+	height: 55px;
+	padding: 12px 6px;
+}
+.bar-header.ios{
+
+}
+
+.has-header {
+	top: 65px;
+}
+
+.thumbnail_list {
+	margin-bottom: 5px;
+}
+
+.item-body h2,
+.item-body p {
+	margin-top: 0;
+}
+
+
+.bar.bar-stable {
+	border-bottom:0;
+	box-shadow: 0 0px 20px 0px #ccc;
+}
+
+.ion-refresh:before {
+	font-size: 20px !important;
+	margin-top: 7px !important;
+}
+.ion-android-share:before {
+	font-size: 20px !important;
+	margin-top: 7px !important;
+}
+.pane{
+	background-color: #EEE !important;
+}
+
+.img-caption{
+	font-size: 12px !important;
+	text-align: center !important;
+	font-weight: 100 !important;
+	color:#666 !important;
+	font-style: italic !important;
+}
+.loading-news{
+	position:relative;
+	height:30px;
+	width:30px;
+	background-image: url('../img/auth-info-loader.gif') ;
+	background-position:  center center;
+	background-repeat: no-repeat;
+	padding-top:50px;
+	left:50%;
+	margin-left: -15px;
+}
+.loading-news.clear{
+	background-image: none !important;
+	text-align: center;
+	font-size:12px;
+	color:#666;
+	line-height:18px;
+	width: 100% !important;
+	left: 0 !important;
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+	padding-left: 20px !important;
+	padding-right: 20px !important;
+	padding-top:50px !important;
+}
+.tags{
+	font-style: italic;
+	font-size: 12px !important;
+	font-weight: 100 !important;
+	color:#666 !important;
+	padding-top:10px;
+}
+.top-logo{
+	text-align: center;
+	padding-top:15px;
+}
+.top-logo img{
+	height:100%;
+	margin-left:auto;
+	margin-right: auto;
+}
+.sidebar-list .item{
+	border: 0 !important;
+	box-shadow: none !important;
+}
+.about-content{
+	padding-top:100px;
+}
+.about-logo img{
+	margin-left:auto;
+	margin-right:auto;
+	display:block;
+}
+.about{
+	padding-top:40px;
+}
+.about p, .about a{
+	color:#888;
+	font-size: 12px;
+	text-align: center;
+	line-height: 15px;
+}
+.about a{
+	color:#444;
+	text-decoration: none;
+}
+.about-footer{
+
+}
+.bar .title.title-left{
+	padding-top: 4px;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .bar-header:not(.bar-subheader) {
+    padding-top:10px;
+    margin-top:0 !important;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .nav-bar-block{
+    margin-top:0px !important;
+}
+
+/*Style Added by Nishil*/
+/*.home-container {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	height: 100%;
+}
+.home-container > .row {
+	-webkit-flex: 1;
+}
+.icon-row-top {
+	-webkit-align-items: flex-end;
+}
+
+.icon-row-bottom {
+	-webkit-align-items: flex-start;
+}*/
+.home-container{
+	position: relative;
+	width:100%;
+	display: table-cell;
+	vertical-align: middle;
+}
+.home-container > .row {
+
+}
+.square-button {
+	width: 90% !important;
+	height:0 !important;
+	padding: 30% 0 60% 0 !important;
+	border-radius: 50%;
+	font-size: 1em !important;
+	line-height: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.square-button-num{
+	width: 90% !important;
+	height:0 !important;
+	padding: 25% 0 65% 0 !important;
+	border-radius: 50%;
+	font-size: 1em !important;
+	line-height: 20px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+i.tile-button-icon:before {
+  font-size: 70px !important;
+}
+.news-tile-back{
+	background-color: #B4B4B4 !important;
+	border-color: #B4B4B4 !important;
+}
+
+.coupons-tile-back{
+	background-color: #A19FA0 !important;
+	border-color: #A19FA0 !important;
+}
+
+.events-tile-back{
+	background-color: #696969 !important;
+	border-color: #696969 !important;
+}
+
+.impnos-tile-back{
+	background-color: #E54148 !important;
+	border-color: #E54148 !important;
+}
+
+.icon-margin-right{
+	margin-right: 7px !important;
+}
+
+.pinned-icon{
+	position:absolute;
+	top:0;
+	right:15px;
+	font-size: 2em;
+	color: #E54148 !important;
+}
+
+.today-highlighter{
+	/*width: 10%;
+	height: 40%;
+	position: absolute;
+	top: 80%;
+	left: 95%;
+	background-color: #E54148 !important;
+	-webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);*/
+	width: 0;
+	height: 0;
+	position: absolute;
+	right: 0;
+	color: #E54148;
+	bottom:0;
+	border-bottom: 20px solid red;
+	border-left: 20px solid transparent;
+}
+
+.isgoing-highlight{
+	color: #5CC00E !important;
+	/*position: absolute;
+	left: 0;
+	top:0;*/
+	/*font-size: 2em;*/
+	/*z-index:10 !important;*/
+}
+
+.ongoing-text{
+	position: absolute;
+	left: 5%;
+	font-size: 0.8em;
+	bottom:5px;
+}
+.ongoing-text-small{
+	position: absolute;
+	left: 32%;
+	font-size: 0.8em;
+	bottom:0;
+}
+
+.list .item.item-accordion {
+  line-height: 38px;
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+  transition: 0.09s all linear;
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+.list .item.item-accordion.ng-hide {
+  line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add,
+.list .item.item-accordion.ng-hide-remove {
+  display: block !important;
+}
+
+.promoted-image img{
+	height: 200px !important;
+}
+
+.wrapword{
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap !important;      /* Opera 4-6 */
+	white-space: -o-pre-wrap !important;    /* Opera 7 */
+	white-space: pre-wrap !important;       /* css-3 */
+	word-wrap: break-word !important;       /* Internet Explorer 5.5+ */
+	white-space: -webkit-pre-wrap !important; /* Newer versions of Chrome/Safari*/
+	word-break: break-all !important;
+	white-space: normal !important;
+	width: 100%;
+}
+
+.contact-item{
+	border-top: 1px #EFEFEF solid !important;
+	width: 100% !important;
+	padding: 3px;
+	line-height: 25px;
+	padding-left:10px !important;
+	padding-top:7px !important;
+	padding-top:7px !important;
+}
+
+.contact-item:first-child{
+	border-top: 0 !important;
+	margin-top: 0px;
+}
+.contact-item a{
+	text-decoration: none !important;
+	color: #000000;
+	font-size:1em !important;
+}
+
+.side-menu-items{
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.activesideitem a{
+	background-color: #E54148 !important;
+	color: #FFFFFF !important;
+}
+
+.item-complex.side-menu-items a.item-content{
+	display: inline-block;
+	padding: 0;
+	width: 65%;
+	padding-top:7px;
+	padding-bottom:7px;
+}
+.impnos-sidemenu{
+	width: 90% !important;
+	margin-left: 7px;
+}
+.impnos-sidemenu a{
+	width: 100% !important;
+
+}
+.impnos-sidemenu a i{
+	font-size: 2.3em;
+	text-align: center !important;
+}
+.side-menu-items a i{
+	font-size: 2.3em;
+	text-align: center;
+}
+.greyback{
+	background-color: #F4F4F4;
+}
+.whiteback{
+	background-color: #FFFFFF;
+}

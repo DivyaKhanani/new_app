@@ -1,0 +1,26 @@
+<ion-view view-title="Important Numbers">
+  <ion-content overflow-scroll="true">
+    <ion-list>
+      <div ng-attr-id="{{contact.ContactType.id}}" ng-if="loaded" ng-repeat="contact in contacts">
+        <ion-item class="item-stable" ng-click="toggleGroup(contact.ContactType.id)" ng-class="{active: isGroupShown(contact.ContactType.id)}">
+          <i class="icon" ng-class="isGroupShown(contact.ContactType.id) ? 'ion-minus' : 'ion-plus'"></i>&nbsp;<span style="font-weight:bold;">{{contact.ContactType.name}}</span>
+        </ion-item>
+        <ion-item class="item-accordion" ng-show="isGroupShown(contact.ContactType.id)">
+            <div class="contact-item" ng-if="contact.Contact.length>0" ng-class-odd="'greyback'" ng-class-even="'whiteback'" ng-repeat="num in contact.Contact" href="#">
+              <h2 style="font-size:1em !important; font-weight:bolder; white-space:normal !important;">{{num.name}}</h2>
+              <a class="phnos" ng-repeat="phno in num.number.split('|')" ng-href="tel: {{phno}}">{{phno}}&nbsp;</a>
+            </div>
+            <div class="contact-item" ng-if="contact.Contact.length===0">
+              No contacts found.
+            </div>
+        </ion-item>
+      </div>
+    </ion-list>
+    <div ng-if="loaded && contacts.length<1" class="loading-news clear">
+      No numbers found.
+    </div>
+    <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+      {{error_message}}
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,75 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar ng-class="{ ios: isIOS() }" class="bar bar-header bar-assertive">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+        </button>
+      </ion-nav-buttons>
+       
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu  side="left">
+    <!-- <ion-header-bar  class="bar-stable bar-assertive">
+      <h1 class="title top-logo">
+      Gujarat Samachar
+      </h1>
+    </ion-header-bar> -->
+    <ion-content>
+    <ion-list>
+        <!-- <ion-item class="active no-border item item-icon-left" menu-close ng-click="showTopCoupons()">
+          <i class="icon ion-pricetags"></i> Top Offers
+        </ion-item> -->
+<!-- 
+        <div class="item item-divider">
+          Categories
+        </div> -->
+
+        <center><ion-spinner ng-if="newscategories.length==0 || newscategories===undefined"></ion-spinner></center>
+        <ion-item class="item-light line-height-15px" href="#/app/news" menu-close>
+            Home
+        </ion-item>
+        <div ng-repeat="category in newscategories">
+          <ion-item class="item-light line-height-15px" 
+                    ng-click="toggleGroup(category.Category.id)"
+                    ng-class="{active: isGroupShown(category.Category.id)}">
+            {{category.Category.name}}
+            <i class="icon float-right" ng-if="category.SubCategory.length>0" ng-class="isGroupShown(category.Category.id) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+          </ion-item>
+          <ion-item class="item-accordion line-height-15px"
+                    ng-repeat="subcategory in category.SubCategory"
+                    ng-show="isGroupShown(category.Category.id)"
+                    href="#/app/subcat/{{subcategory.id}}"
+                    menu-close
+                    >
+            {{subcategory.name}}
+            <!-- <i class="icon float-right ion-chevron-right"></i> -->
+          </ion-item>
+        </div>
+        
+
+        <!-- <div class="item item-divider" style="margin-top:20px;">
+          Any Questions?
+        </div>
+
+        <ion-item class="no-border item item-icon-left" menu-close ng-click="showAboutUs()">
+          <i class="icon ion-ios-information"></i> About Us
+        </ion-item>
+
+        <ion-item class="no-border item item-icon-left" menu-close ng-click="showSupport()">
+          <i class="icon ion-chatbox-working"></i> Support
+        </ion-item> -->
+      
+      </ion-list>
+        <!-- <ion-item ng-if="!isIOS()" nav-clear menu-close onclick="window.open('https://facebook.com/ourvadodara', '_blank', 'location=yes');">
+          <i class="ion-social-facebook"></i>&nbsp;&nbsp;Facebook Page
+        </ion-item> -->
+      </ion-list>
+    </ion-content>
+    
+  </ion-side-menu>
+</ion-side-menus>

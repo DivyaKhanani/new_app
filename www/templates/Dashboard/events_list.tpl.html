@@ -1,0 +1,60 @@
+<ion-view view-title="Vadodara Events">
+  <ion-nav-buttons side="right">
+    <a href="" class="button button-icon icon ion-refresh" ng-click="refresh()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <div ng-if="loaded" ng-repeat="event in eventlist track by event.Event.id">
+        <div class="list">
+
+          <a href="#/app/eventDetails/{{event.Event.id}}" ng-if="event.Event.type==true" class="no_decoration">
+
+            <div class="item">
+              <h2>{{event.Event.title}}</h2>
+              <p><span ng-if="event.Event.ongoing===1" class="isgoing-highlight icon-margin-right"><i class="ion-record"></i></span>{{event.Event.event_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p>
+              <span class="pinned-icon"><i class="ion-bookmark"></i></span>
+            </div>
+
+            <div class="item item-body">
+              <img ng-if="event.Event.image_name != null" class="full-image" ng-src="{{event.Event.image_name}}">
+              <img ng-if="event.Event.image_name == null" class="full-image" ng-src="img/no-img.png">
+            </div>
+
+            <div class="item">
+              <p>{{event.Event.short_desc}}
+              </p>
+
+              <!-- <div class="today-highlighter" ng-if="event.Event.isToday"></div> -->
+              <!-- <div class="today-highlighter"></div> -->
+            </div>
+          </a>
+
+          <a href="#/app/eventDetails/{{event.Event.id}}" ng-if="event.Event.type==false" class="no_decoration">
+            <div class="item item-thumbnail-left thumbnail_list">
+              <img ng-if="event.Event.image_name != null" ng-src="{{event.Event.image_name}}">
+              <img ng-if="event.Event.image_name == null" ng-src="img/no-img.png">
+              <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
+              <div class="leftpadding">
+                <h2>{{event.Event.title}}</h2>
+                <p>{{event.Event.short_desc}}</p>
+                <span class="date_font"><span ng-if="event.Event.ongoing===1" class="isgoing-highlight icon-margin-right"><i class="ion-record"></i></span>{{event.Event.event_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</span><br/>
+              </div>
+              <!-- <div class="today-highlighter" ng-if="event.Event.isToday"></div> -->
+
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+    </ion-list>
+    <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+      {{error_message}}
+    </div>
+    <ion-infinite-scroll
+      ng-if="!moredata"
+      on-infinite="loadMore()"
+      distance="1%">
+  </ion-infinite-scroll>
+  </ion-content>
+</ion-view>

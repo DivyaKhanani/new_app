@@ -1,0 +1,55 @@
+<ion-view view-title="">
+  <ion-nav-buttons side="right">
+    <a href="" class="button button-icon icon ion-android-share" ng-click="share()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <!-- <div class="bar bar-header bar-dark">
+      <h1 class="title">Sunburn 2015</h1>
+    </div> -->
+      <div class="list">
+        <div class="item">
+          <h2>{{coupon.Coupon.title}}</h2>
+        </div>
+
+        <!-- <div class="item item-image">
+          <img src="http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55c4842c-6cb8-414c-8890-185245c37c92/medium_3_1438932368.jpg">
+        </div> -->
+        <div class="item" ng-if="coupon.CouponPhoto.length>0">
+          <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="photo in coupon.CouponPhoto">
+              <img ng-src="{{photo.file_name}}" width="100%">
+            </ion-slide>
+          </ion-slide-box>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-calendar icon-margin-right"></i>Validity</h2>
+          <p>From : {{coupon.Coupon.start_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</p>
+          <p>To : {{coupon.Coupon.end_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</p>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-navigate icon-margin-right"></i>Address</h2>
+          <p>{{coupon.Coupon.address}}</p>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-clipboard icon-margin-right"></i>Description</h2>
+          <p ng-bind-html="coupon.Coupon.content"></p>
+        </div>
+
+
+      <div class="item item-text-wrap">
+        <h2><i class="icon ion-levels icon-margin-right"></i>Terms & Conditions</h2>
+        <p ng-bind-html="coupon.Coupon.conditions"></p>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
+
+<!-- http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55c4842c-6cb8-414c-8890-185245c37c92/medium_3_1438932368.jpg
+http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55d2fe62-b370-4ee7-b5bc-2deb45c37c92/medium_sayaji%20hospital.jpg
+http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55cc6394-3290-46ad-b496-739745c37c92/medium_vinayak%20bus.jpg
+
+-->

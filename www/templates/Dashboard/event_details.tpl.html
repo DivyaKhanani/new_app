@@ -1,0 +1,53 @@
+<ion-view view-title="">
+  <ion-nav-buttons side="right">
+    <a href="" class="button button-icon icon ion-android-share" ng-click="share()"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <!-- <div class="bar bar-header bar-dark">
+      <h1 class="title">Sunburn 2015</h1>
+    </div> -->
+      <div class="list" ng-if="loaded">
+        <div class="item">
+          <h2>{{event.Event.title}}</h2>
+          <!-- <p>{{event.Event.event_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</p> -->
+        </div>
+
+        <!-- <div class="item item-image">
+          <img src="http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55c4842c-6cb8-414c-8890-185245c37c92/medium_3_1438932368.jpg">
+        </div> -->
+        <div class="item" ng-if="event.Photo.length>0">
+          <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="photo in event.Photo">
+              <img ng-src="{{photo.file_name}}" width="100%">
+            </ion-slide>
+          </ion-slide-box>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-calendar icon-margin-right"></i>Duration</h2>
+          <p>From : {{event.Event.event_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</p>
+          <p>To : {{event.Event.end_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</p>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-navigate icon-margin-right"></i>Location</h2>
+          <p>{{event.Event.location}}</p>
+        </div>
+
+        <div class="item item-text-wrap">
+          <h2><i class="icon ion-clipboard icon-margin-right"></i>Details</h2>
+          <p ng-bind-html="event.Event.content"></p>
+        </div>
+
+      </div>
+      <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+        {{error_message}}
+      </div>
+  </ion-content>
+</ion-view>
+
+<!-- http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55c4842c-6cb8-414c-8890-185245c37c92/medium_3_1438932368.jpg
+http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55d2fe62-b370-4ee7-b5bc-2deb45c37c92/medium_sayaji%20hospital.jpg
+http://app.ourvadodara.com/actonation/app/webroot/files/news/image_name/55cc6394-3290-46ad-b496-739745c37c92/medium_vinayak%20bus.jpg
+
+-->

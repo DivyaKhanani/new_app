@@ -1,0 +1,26 @@
+<ion-view view-title="">
+<ion-nav-buttons side="right">
+<a href="" ng-if="loaded" class="button button-icon icon ion-android-share" ng-click="share(newsdetails.title)"></a>
+</ion-nav-buttons>
+ <ion-content>
+    <ion-list ng-if="loaded">
+    <div class="item item-body heading_detail">
+      <h2>{{newsdetails.title}}</h2>
+      <p> <!-- <span>{{ newsdetails.published_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</span> --></p>
+    </div>
+      <!-- <div  ng-if="newsdetails.image != '\/app\/webroot\/files\/news\/image_name\/\/medium_'" class="item item-body">
+    	 <img class="full-image" ng-src="http://app.ourvadodara.com/actonation{{newsdetails.image}}">
+        <h2 class="img-caption">{{newsdetails.caption}}</h2>
+    	</div> -->
+    	<div class="item item-body">
+    		<div class="eventdetails">
+	    		<p ng-bind-html="newsdetails.content"></p>
+    		</div>
+        <p class="tags">{{ newsdetails.tags }}</p>
+        </div>
+    </ion-list>
+    <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
+      {{error_message}}
+    </div>
+  </ion-content>
+</ion-view>

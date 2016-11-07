@@ -1,0 +1,38 @@
+
+Build
+----------------------------------
+ionic build android --release
+
+
+Copy
+------------------------------------
+cp platforms/android/ant-build/CordovaApp-release-unsigned.apk release/android-release-unsigned.apk
+
+
+Jarsigning
+------------------------------
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore release/android-release-unsigned.apk alias_name
+
+keystore & keypassword: hakunamatata
+
+
+Zipalign
+--------------------------------
+./zipalign -v 4 release/android-release-unsigned.apk release/ourvadodara_RELEASE_1.0.0.apk
+
+
+
+END OF RELEASE GENERATION
+
+
+OTHER Commands
+-----------------------------------------------------------------------------------------
+
+Key Info
+------------------------
+keytool -genkey -v -keystore com.mycitybuzz.release.keystore -alias com.mycitybuzz -keyalg RSA -keysize 2048 -validity 10000
+
+
+Remove plugin
+-----------------------
+cordova plugin rm org.apache.cordova.console
