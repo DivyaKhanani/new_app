@@ -10,15 +10,13 @@
         <div class="thumbnail_list">
           <div class="item">
             <h2>{{news.title}}</h2>
-            <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p>
-            <span class="pinned-icon"><i class="ion-bookmark"></i></span>
+            <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
+            <!-- <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
           </div>
           <div class="item item-body">
             <img ng-src="{{app_url}}{{news.image}}">
           </div>
-          <div class="item">
-            <p>{{news.short_desc}}</p>
-          </div>
+          
         </div>
         </a>       
       </div>
@@ -36,8 +34,7 @@
         </div>
   </div>
 
-  </ion-list>
-  <ion-list>
+
   <div ng-repeat="category in newssubcategories.SubCategory">
           <ion-item class="item-assertive line-height-15px border-top-radius-25px margin-bottom-10px"
                     ng-click="toggleGroup(category.id,category.app_table_name)"
@@ -47,7 +44,7 @@
           </ion-item>
           <div ng-if="isGroupShown(category.id)"  class="item-accordion line-height-15px">
             <div class="list" >
-              <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist track by news.title"  >
+              <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist"  >
               <div class="item item-thumbnail-left thumbnail_list">
                 <img ng-src="{{app_url}}{{news.image}}">
                <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
@@ -58,7 +55,7 @@
                </div>
               </div>
             </a>
-             <a href="#/app/subcat/{{category.id}}" class="no_decoration">
+             <a href="#/app/subcat/{{category.id}}/{{category.name}}/{{category.app_table_name}}" class="no_decoration">
               <div class="item thumbnail_list">
                 <p class="click-more">More >></p>
               </div>

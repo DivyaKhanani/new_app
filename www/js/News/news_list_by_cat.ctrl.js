@@ -25,16 +25,17 @@
 		$scope.loaded = false;
 		$scope.cat_loaded = false;
 		$scope.error = false;
-		NewsService.getNewsListByCat($stateParams.catId).then(function(response){
+		$scope.getNewsListByCat=function(){
+			NewsService.getNewsListByCat($stateParams.catId).then(function(response){
 			$scope.loaded = true;
 			$scope.newslist = response.data;
 			console.log($scope.newslist);
-		}, function(err){
-			console.log(err);
-			$scope.error = true;
-			$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
-		});
-
+			}, function(err){
+				console.log(err);
+				$scope.error = true;
+				$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
+			});
+		}
 		$scope.groups = [];
 	  for (var i=0; i<10; i++) {
 	    $scope.groups[i] = {
@@ -95,7 +96,7 @@
 			console.log('refresh');
 			$scope.moredata = false;
 			page = 1;
-			$scope.loadMore();
+			$scope.getNewsListByCat();
 			
 		};
 		$scope.loadMore = function() {
@@ -138,11 +139,11 @@
 	    	})
 		};
 
-		// $scope.$on('$stateChangeSuccess', function() {
-		// 	$scope.loadMore();
+		$scope.$on('$stateChangeSuccess', function() {
+			$scope.getNewsListByCat();
 
-		// 	console.log($scope.newslist);
-		// });
+			//console.log($scope.newslist);
+		});
 
 		$scope.$on('refresh', function() {
 			$scope.refresh();

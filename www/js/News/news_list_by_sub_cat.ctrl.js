@@ -12,6 +12,7 @@
 		$scope.loaded = false;
 		$scope.error = false;
 		var cat_id =$stateParams.subCatId;
+		$scope.cat_name=$stateParams.subName;
 		
 		/*NewsService.getNewsByCat($stateParams.newsId).then(function(response){
 			cat_id=$stateParams.newsId;
@@ -41,11 +42,11 @@
 
 			in_progress = true;
 
-	    	$http.get($scope.app_url + '/getNewsByCat/'+cat_id+'/' + page).success(function(items) {
-	    		$scope.loaded = true;
+	    	NewsService.getNewsListBySubCat($stateParams.tnm,$stateParams.subCatId).then(function(response){
+	    		$scope.loaded = true		;
 	    		page++;
 	    		in_progress = false;
-
+	    		items=response.data;
 	    		if(items === "\"\""){ $scope.moredata = true; $scope.$broadcast('scroll.infiniteScrollComplete'); return; }
 
 	    		if($scope.newscatlist.length == 0)
@@ -66,13 +67,12 @@
 
 	        	$scope.$broadcast('scroll.infiniteScrollComplete');
 
-	    	})
-	    	.error(function(data){
+	    	
+	    	}, function(err){
 	    		$scope.error = true;
 				$scope.error_message = "Sorry couldn't load the article. Please try again later or check your internet connection."
-	    	})
+	    	});
 		};
-
 
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.loadMore();

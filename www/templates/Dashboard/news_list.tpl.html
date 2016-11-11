@@ -28,26 +28,27 @@
   <ion-content>
     <ion-list>
     <div class="list">
+    <div class="margin-top-10px"><center><span class="top-text">TOP NEWS</span></center><hr class="margin-0"></div>
     <div ng-if="loaded" ng-repeat="news in newslist">
-        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 1">
-        <div class="thumbnail_list">
+        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration " ng-if="news.app_show_on_top == 1">
+        <div class="thumbnail_list margin-bottom-10px">
           <div class="item">
             <h2>{{news.title}}</h2>
-            <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p>
-            <span class="pinned-icon"><i class="ion-bookmark"></i></span>
+            <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
+           <!--  <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
           </div>
           <div class="item item-body">
             <img ng-src="{{app_url}}{{news.image}}">
           </div>
-          <div class="item">
+          <!-- <div class="item">
             <p>{{news.short_desc}}</p>
-          </div>
+          </div> -->
         </div>
         </a>       
-      </div>
+    </div>
       <div ng-if="loaded" ng-repeat="news in newslist">
         <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 0">
-          <div class="item item-thumbnail-left thumbnail_list">
+          <div class="item item-thumbnail-left thumbnail_list ">
             <img ng-src="{{app_url}}{{news.image}}">
             <div class="leftpadding">
             <h2>{{news.title}}</h2>
@@ -58,9 +59,6 @@
         </a>
         </div>
   </div>
-
-  </ion-list>
-  <ion-list>
   <div ng-repeat="category in newscategories">
           <ion-item class="item-assertive line-height-15px border-top-radius-25px margin-bottom-10px"
                     ng-click="toggleGroup(category.Category.id)"

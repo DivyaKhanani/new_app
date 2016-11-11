@@ -8,10 +8,9 @@
       <h2>{{newsdetails.title}}</h2>
       <p> <!-- <span>{{ newsdetails.published_date | amDateFormat:'dddd, MMMM D, YYYY, h:mm a'}}</span> --></p>
     </div>
-      <!-- <div  ng-if="newsdetails.image != '\/app\/webroot\/files\/news\/image_name\/\/medium_'" class="item item-body">
-    	 <img class="full-image" ng-src="http://app.ourvadodara.com/actonation{{newsdetails.image}}">
-        <h2 class="img-caption">{{newsdetails.caption}}</h2>
-    	</div> -->
+      <div class="item item-body">
+       <img ng-src="{{app_url}}{{newsdetails.image}}" class="full-image">
+    	</div>
     	<div class="item item-body">
     		<div class="eventdetails">
 	    		<p ng-bind-html="newsdetails.content"></p>

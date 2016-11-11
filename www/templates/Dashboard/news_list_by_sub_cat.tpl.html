@@ -1,12 +1,11 @@
-<ion-view view-title="{{newscatlist[0].subcat_name}}" >
+<ion-view view-title="{{cat_name}}" >
   <ion-nav-buttons side="right">
   <a href="" class="button button-icon icon ion-refresh" ng-click="refresh()"></a>
   </ion-nav-buttons>
   <ion-content>
     <ion-list>
-    <div ng-if="loaded" ng-repeat="news in newscatlist track by news.id">
+    <div ng-if="loaded" ng-repeat="news in newscatlist track by news.title">
       <div class="list">
-
        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration">
       <div class="item item-thumbnail-left thumbnail_list">
         <img ng-src="{{app_url}}{{news.image}}">

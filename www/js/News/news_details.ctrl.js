@@ -19,7 +19,7 @@
 		$scope.share = function(arg) {
             //window.plugins.socialsharing.share(arg);
             if($scope.newsdetails === undefined){ return; }
-            arg = arg + ' - ' + $scope.newsdetails.short_desc +  '\nShared via Our Vadodara App ' + $scope.app_url;
+            arg = arg + ' - ' + $scope.newsdetails.short_desc +  '\nShared via Gujarat Samachar App ';
             $cordovaSocialSharing.share(arg);
         };
 

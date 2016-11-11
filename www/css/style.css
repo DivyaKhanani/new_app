@@ -1,5 +1,43 @@
 /* Empty. Add your own CSS if you like */
 /*Added by divya*/
+/*.item-complex.item-light > .item-content{
+	border-color: #e42012 !important;
+    background-color: #ef473a !important;
+    color: white;
+}*/
+.margin-top-10px{
+	    margin-top: 10px;
+}
+
+.top-text{
+	background: #ef473a;
+    padding: 5px 40px 1px 40px;
+    color: white;
+    font-size: larger;
+    font-weight: bold;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+.item-content.activated{
+	border-color: #e42012 !important;
+    background-color: #ef473a !important;
+    color: white;
+
+}
+.margin-0{
+	margin: 0px;
+}
+.item-complex.active.item-light > .item-content{
+	border-color: #e42012 !important;
+    background-color: #ef473a !important;
+    color: white;
+}
+.item.active.item-light, .item.activated.item-light, .item-complex.active .item-content.item-light, .item-complex.activated .item-content.item-light, .item .item-content.active.item-light, .item .item-content.activated.item-light{
+	border-color: #e42012 !important;
+    background-color: #ef473a !important;
+    color: white;
+}
+
 .click-more{
     float: right;
     color: red !important;

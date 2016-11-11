@@ -15,9 +15,9 @@ app.filter('fromNow', function() {
 
 //app.constant('API_URL', 'http://app.ourvadodara.com/actonation/api');
 
- //app.constant('API_URL', 'http://localhost/projects/extra/GS/actonation/api');
  app.constant('API_URL', 'http://192.168.0.6/projects/extra/GS/actonation/api');
-app.constant('APP_URL', 'http://192.168.0.6/projects/extra/GS/actonation');
+ //app.constant('API_URL', 'http://thenerdsfactory.com/divya/GS/actonation/api');
+app.constant('APP_URL', 'http://thenerdsfactory.com/divya/GS/actonation');
 
 app.run(function($ionicPlatform ,push, API_URL, $http, $timeout,$state) {
   $ionicPlatform.ready(function() {
@@ -32,31 +32,31 @@ app.run(function($ionicPlatform ,push, API_URL, $http, $timeout,$state) {
     }
 
     // Register for Push Notifications
-    /*if(window.cordova){
+    if(window.cordova){
     var self = this;
     var result = push.registerPush(function (result) {
       if (result.type === 'registration') {
       var device_id = result.id;
       var device = result.device;
-
+      console.log(ionic.Platform.device());
       var user = { device_id: device_id, device: device };
       //var urlbase = 'http://actonatepanel.com/news/actonation/api';
       $http.post(API_URL + '/insert_deviceid', user)
       .success(function(data, status, headers, config) {
-               if(data.status=="success"){
-                 console.log('register success gcm');
-               }
-               else{
-
-               }
-               }).
+         if(data.status=="success"){
+           console.log('register success gcm');
+         }
+         else{
+          console.log('not register success gcm');
+         }
+      }).
       error(function(data, status, headers, config) {
             });
       }
       });
-    }*/
+    }
 
-    //Onesignal Notification register
+    /*//Onesignal Notification register
     var notificationOpenedCallback = function(jsonData) {
       if(!jsonData){
         return;
@@ -113,7 +113,7 @@ app.run(function($ionicPlatform ,push, API_URL, $http, $timeout,$state) {
     catch(err){
       console.log('err-'+err);
     }
-
+*/
 
 
   });
@@ -144,7 +144,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       }
     })
     .state('app.subCat', {
-      url: "/subcat/:subCatId",
+      url: "/subcat/:subCatId/:subName/:tnm",
       cache: true,
       views: {
         'menuContent': {

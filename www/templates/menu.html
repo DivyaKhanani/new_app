@@ -30,9 +30,12 @@
         </div> -->
 
         <center><ion-spinner ng-if="newscategories.length==0 || newscategories===undefined"></ion-spinner></center>
-        <ion-item class="item-light line-height-15px" href="#/app/news" menu-close>
+        <div>
+        <ion-item class="item item-light line-height-15px activated" ng-click="toggleGroup(0)" ng-init="toggleGroup(0)"
+                    ng-class="{active: isGroupShown(0)}" href="#/app/news" menu-close>
             Home
         </ion-item>
+        </div>
         <div ng-repeat="category in newscategories">
           <ion-item class="item-light line-height-15px" 
                     ng-click="toggleGroup(category.Category.id)"
@@ -43,7 +46,7 @@
           <ion-item class="item-accordion line-height-15px"
                     ng-repeat="subcategory in category.SubCategory"
                     ng-show="isGroupShown(category.Category.id)"
-                    href="#/app/subcat/{{subcategory.id}}"
+                    href="#/app/subcat/{{subcategory.id}}/{{subcategory.name}}/{{subcategory.app_table_name}}"
                     menu-close
                     >
             {{subcategory.name}}

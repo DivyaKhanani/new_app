@@ -113,7 +113,7 @@
     return $http.get(urlbase+'/getNewsListBySubCat/'+sub_table+'/'+sub_cat_id).
           success(function(response, status, headers, config) {
             page++;
-            // console.log("Service NewsList " +response.data);
+            console.log("Service NewsList " +response.data);
 
     }).
       error(function(response, status, headers, config) {
