@@ -20,7 +20,7 @@
         </div>
         </a>       
       </div>
-      <div ng-if="loaded" ng-repeat="news in newslist">
+      <div ng-if="loaded" ng-repeat="news in newslist track by $id(news)">
         <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 0">
           <div class="item item-thumbnail-left thumbnail_list">
             <img ng-src="{{app_url}}{{news.image}}">
@@ -44,7 +44,7 @@
           </ion-item>
           <div ng-if="isGroupShown(category.id)"  class="item-accordion line-height-15px">
             <div class="list" >
-              <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist"  >
+              <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist track by $id(news)"  >
               <div class="item item-thumbnail-left thumbnail_list">
                 <img ng-src="{{app_url}}{{news.image}}">
                <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->

@@ -102,7 +102,6 @@
       //alert(urlbase+'/getNewsListByCat/'+cat_id);
     return $http.get(urlbase+'/getNewsListByCat/'+cat_id).
           success(function(response, status, headers, config) {
-            page++;
             // console.log("Service NewsList " +response.data);
 
     }).
@@ -112,11 +111,10 @@
     var getNewsListBySubCat = function(sub_table,sub_cat_id){
     return $http.get(urlbase+'/getNewsListBySubCat/'+sub_table+'/'+sub_cat_id).
           success(function(response, status, headers, config) {
-            page++;
-            console.log("Service NewsList " +response.data);
+            console.log(response);
 
     }).
-      error(function(response, status, headers, config) {
+      error(function(data) {
        });
     };
 

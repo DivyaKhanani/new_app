@@ -15,9 +15,9 @@ app.filter('fromNow', function() {
 
 //app.constant('API_URL', 'http://app.ourvadodara.com/actonation/api');
 
- app.constant('API_URL', 'http://192.168.0.6/projects/extra/GS/actonation/api');
+ app.constant('API_URL', 'http://localhost/projects/extra/GS/actonation/api');
  //app.constant('API_URL', 'http://thenerdsfactory.com/divya/GS/actonation/api');
-app.constant('APP_URL', 'http://thenerdsfactory.com/divya/GS/actonation');
+app.constant('APP_URL', 'http://localhost/projects/extra/GS/actonation');
 
 app.run(function($ionicPlatform ,push, API_URL, $http, $timeout,$state) {
   $ionicPlatform.ready(function() {

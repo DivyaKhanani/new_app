@@ -28,10 +28,14 @@
 		NewsService.getNewsCateories($stateParams).then(function(response){
 			$scope.cat_loaded = true;
 			$scope.newscategories = response.data;
+			if(response.data==0){
+				$scope.newscategories="";
+			}
 			//console.log($scope.newscategories);
 		}, function(err){
 			console.log(err);
 			$scope.error = true;
+			$scope.newscategories ="";
 			$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
 		});
 		$scope.getNewsFeaturedList=function(){
@@ -81,7 +85,11 @@
 		$scope.showNewsListByCat = function function_name(cat_id) {
 			NewsService.getNewsListByCat(cat_id).then(function(response){	
 			$scope.catNewslist= response.data;
-			console.log($scope.catNewslist);
+
+			if($scope.catNewslist.status=="Error"){
+				$scope.error = true;
+				$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
+			}
 			}, function(err){
 				console.log(err);
 				$scope.error = true;

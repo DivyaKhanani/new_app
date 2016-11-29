@@ -79,8 +79,9 @@
 			$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
 		});
 		$scope.showNewsListBySubCat = function function_name(sub_table,cat_id) {
+			
 			NewsService.getNewsListBySubCat(sub_table,cat_id).then(function(response){	
-			$rootScope.catNewslist= response.data;
+			$rootScope.catNewslist= response;
 			console.log($scope.catNewslist);
 			}, function(err){
 				console.log(err);
