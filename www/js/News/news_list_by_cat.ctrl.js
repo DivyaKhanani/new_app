@@ -1,7 +1,7 @@
 (function(){
 	var app=angular.module('starter.controllers');
 
-	app.controller("NewsByCatCtrl", function($scope, NewsService, $q, $http,$stateParams, moment, API_URL,$rootScope,APP_URL){
+	app.controller("NewsByCatCtrl", function($scope, NewsService, $q, $http,$stateParams,$state,$ionicHistory, moment, API_URL,$rootScope,APP_URL){
 
 		var self = this;
 		$scope.newslist = [];
@@ -29,6 +29,9 @@
 			NewsService.getNewsListByCat($stateParams.catId).then(function(response){
 			$scope.loaded = true;
 			$scope.newslist = response.data;
+			if(response.data.status=="Error"){
+					$scope.newslist= null;
+				}
 			console.log($scope.newslist);
 			}, function(err){
 				console.log(err);
@@ -72,6 +75,9 @@
 		NewsService.getNewsSubCateories($stateParams.catId).then(function(response){
 			$scope.cat_loaded = true;
 			$scope.newssubcategories = response.data['0'];
+			if(response.data.status=="Error"){
+					$scope.newssubcategories= null;
+				}
 			console.log($scope.newssubcategories);
 		}, function(err){
 			console.log(err);
@@ -80,9 +86,14 @@
 		});
 		$scope.showNewsListBySubCat = function function_name(sub_table,cat_id) {
 			
-			NewsService.getNewsListBySubCat(sub_table,cat_id).then(function(response){	
-			$rootScope.catNewslist= response;
-			console.log($scope.catNewslist);
+			NewsService.getNewsListBySubCat(sub_table,cat_id,0).then(function(response){	
+			$rootScope.catNewslist= response.data;
+			console.log($rootScope.catNewslist);
+			if($scope.catNewslist.status=="Error"){
+					$rootScope.catNewslist= null;
+					$scope.show_footer=false;
+				}
+			
 			}, function(err){
 				console.log(err);
 				$scope.error = true;
@@ -93,12 +104,16 @@
 
 	
 		$scope.refresh = function(){
-			$scope.newslist=[];
-			console.log('refresh');
-			$scope.moredata = false;
-			page = 1;
+			//$ionicHistory.clearCache();
+
+			//$scope.newslist=[];
 			$scope.getNewsListByCat();
 			
+			
+			//$state.reload();
+			 
+			  //$state.reload();
+		
 		};
 		$scope.loadMore = function() {
 			if(in_progress) { $scope.$broadcast('scroll.infiniteScrollComplete'); return; }
@@ -142,13 +157,35 @@
 
 		$scope.$on('$stateChangeSuccess', function() {
 			$scope.getNewsListByCat();
+			$scope.getAdvertisment(2);
+
 
 			//console.log($scope.newslist);
 		});
 
 		$scope.$on('refresh', function() {
+			$scope.getNewsListByCat();
 			$scope.refresh();
 		});
+		$scope.show_footer=true;
+		$scope.hide_footer = function(){
+			$scope.show_footer=false;
+			
+			
+		};
+		$scope.getAdvertisment = function(cat_id) {
+				NewsService.getAdvertisment(cat_id).then(function(response){	
+				$scope.adList= response.data;
+				console.log($scope.adList);
+				if(response.data.status=="Error"){
+					$scope.adList= null;
+					$scope.show_footer=false;
+				}
+			}, function(err){
+				$scope.show_footer=false;
+			});
+			
+		}
 
 	});
 

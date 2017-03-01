@@ -31,21 +31,21 @@
 
         <center><ion-spinner ng-if="newscategories.length==0 || newscategories===undefined"></ion-spinner></center>
         <div>
-        <ion-item class="item item-light line-height-15px activated" ng-click="toggleGroup(0)" ng-init="toggleGroup(0)"
-                    ng-class="{active: isGroupShown(0)}" href="#/app/news" menu-close>
+        <ion-item class="item item-light line-height-15px activated" ng-click="toggleGroupMenu(0)" ng-init="toggleGroupMenu(0)"
+                    ng-class="{active: isGroupShownMenu(0)}" href="#/app/news" menu-close>
             Home
         </ion-item>
         </div>
         <div ng-repeat="category in newscategories">
           <ion-item class="item-light line-height-15px" 
-                    ng-click="toggleGroup(category.Category.id)"
-                    ng-class="{active: isGroupShown(category.Category.id)}">
+                    ng-click="toggleGroupMenu(category.Category.id)"
+                    ng-class="{active: isGroupShownMenu(category.Category.id)}">
             {{category.Category.name}}
-            <i class="icon float-right" ng-if="category.SubCategory.length>0" ng-class="isGroupShown(category.Category.id) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
+            <i class="icon float-right" ng-if="category.SubCategory.length>0" ng-class="isGroupShownMenu(category.Category.id) ? 'ion-chevron-up' : 'ion-chevron-down'"></i>
           </ion-item>
-          <ion-item class="item-accordion line-height-15px"
+          <ion-item class="item-accordion line-height-15px grey"
                     ng-repeat="subcategory in category.SubCategory"
-                    ng-show="isGroupShown(category.Category.id)"
+                    ng-show="isGroupShownMenu(category.Category.id)"
                     href="#/app/subcat/{{subcategory.id}}/{{subcategory.name}}/{{subcategory.app_table_name}}"
                     menu-close
                     >

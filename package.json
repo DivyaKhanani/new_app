@@ -21,5 +21,7 @@
     "https://github.com/ohh2ahh/AppAvailability.git",
     "org.apache.cordova.device"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "android"
+  ]
 }

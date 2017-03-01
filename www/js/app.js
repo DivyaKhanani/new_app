@@ -15,107 +15,25 @@ app.filter('fromNow', function() {
 
 //app.constant('API_URL', 'http://app.ourvadodara.com/actonation/api');
 
- app.constant('API_URL', 'http://localhost/projects/extra/GS/actonation/api');
+ app.constant('API_URL', 'http://192.168.0.6/projects/extra/GS/actonation/api');
  //app.constant('API_URL', 'http://thenerdsfactory.com/divya/GS/actonation/api');
-app.constant('APP_URL', 'http://localhost/projects/extra/GS/actonation');
+ //app.constant('APP_URL', 'http://thenerdsfactory.com/divya/GS/actonation/');
 
-app.run(function($ionicPlatform ,push, API_URL, $http, $timeout,$state) {
+app.constant('APP_URL', 'http://192.168.0.6/projects/extra/GS/actonation');
+
+app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+      cordova.plugins.Keyboard.disableScroll(true);
+
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-
-    // Register for Push Notifications
-    if(window.cordova){
-    var self = this;
-    var result = push.registerPush(function (result) {
-      if (result.type === 'registration') {
-      var device_id = result.id;
-      var device = result.device;
-      console.log(ionic.Platform.device());
-      var user = { device_id: device_id, device: device };
-      //var urlbase = 'http://actonatepanel.com/news/actonation/api';
-      $http.post(API_URL + '/insert_deviceid', user)
-      .success(function(data, status, headers, config) {
-         if(data.status=="success"){
-           console.log('register success gcm');
-         }
-         else{
-          console.log('not register success gcm');
-         }
-      }).
-      error(function(data, status, headers, config) {
-            });
-      }
-      });
-    }
-
-    /*//Onesignal Notification register
-    var notificationOpenedCallback = function(jsonData) {
-      if(!jsonData){
-        return;
-      }
-      var type=jsonData.additionalData.type;
-      var id=jsonData.additionalData.final_id;
-      if(type==1){
-        //News
-        var news_id = id;
-        $state.go('app.newsDetails', { newsId: news_id});
-      }
-      else if(type==2){
-        //Coupon
-        var coupon_id = id;
-        $state.go('app.couponDetails', { couponId: coupon_id});
-      }
-      else if(type==3){
-        //Event
-        var event_id = id;
-        $state.go('app.eventDetails', { eventId: event_id});
-      }
-    };
-
-    try{
-      window.plugins.OneSignal.init("b319c19a-5522-11e5-b496-2f7e8dbd6bda",{googleProjectNumber: "703668463412",autoRegister: true},notificationOpenedCallback);
-      window.plugins.OneSignal.enableVibrate(true);
-    }catch(err){
-      console.log('err-'+err);
-    }
-
-    try{
-      window.plugins.OneSignal.getIds(function(ids) {
-        console.log("UserID: " + ids.userId);
-        console.log("PushToken: " + ids.pushToken);
-        console.log('platform-'+device.platform);
-        console.log('uuid-'+device.uuid);
-        //Adding onesignal id in users
-        var user = { device_uuid: device.uuid, device: device.platform, onesignal_player_id: ids.userId };
-        $http.post(API_URL+'/insert_device_info', user)
-        .success(function(data, status, headers, config) {
-          console.log('registered'+angular.toJson(data)); 
-           if(data.status=="success"){
-             console.log('register success gcm');
-           }
-           else{
-
-           }
-        }).
-        error(function(data, status, headers, config) {
-          console.log('error-');
-        });
-      });
-    }
-    catch(err){
-      console.log('err-'+err);
-    }
-*/
-
-
   });
 })
 

@@ -1,77 +1,51 @@
-<ion-view view-title="Gujarat" >
+<ion-view view-title="<img src="img/logo.png">">
+  <ion-nav-title side="center" class="center" >
+      <img src="img/logo.png">
+  </ion-nav-title>
+
   <ion-nav-buttons side="right">
   <a href="" class="button button-icon icon ion-refresh" ng-click="refresh()"></a>
   </ion-nav-buttons>
-  <!-- <ion-content>
-    <ion-list>
-    <div ng-if="loaded" ng-repeat="news in newslist track by news.id">
-    <div class="list">
-
-     <a href="#/app/newsDetails/{{news.id}}" class="no_decoration">
-    <div class="item item-thumbnail-left thumbnail_list">
-      <img ng-if="news.image != '\/app\/webroot\/files\/news\/image_name\/\/small_'" ng-src="http://app.ourvadodara.com/actonation{{news.image}}">
-      <img ng-if="news.image == '\/app\/webroot\/files\/news\/image_name\/\/small_'" ng-src="img/no-img.png">
-     <img ng-src="http://localhost/Projects/News/actonation{{news.image}}">
-      <div class="leftpadding">
-      <h2>{{news.title}}</h2>
-      <p>{{news.short_desc}}</p>
-      <span class="date_font">{{ news.published_date | fromNow}}</span>
-     </div>
-    </div>
-  </a>
-  </div>
-  </div>
-
-  </ion-list> -->
-
-
   <ion-content>
-    <ion-list>
-    <div class="list">
-    <div class="margin-top-10px"><center><span class="top-text">TOP NEWS</span></center><hr class="margin-0"></div>
-    <div ng-if="loaded" ng-repeat="news in newslist">
-        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration " ng-if="news.app_show_on_top == 1">
-        <div class="thumbnail_list margin-bottom-10px">
-          <div class="item">
-            <h2>{{news.title}}</h2>
-            <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
-           <!--  <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
-          </div>
-          <div class="item item-body">
-            <img ng-src="{{app_url}}{{news.image}}">
-          </div>
-          <!-- <div class="item">
-            <p>{{news.short_desc}}</p>
-          </div> -->
+    
+      <ion-list>
+      
+
+      <div class="list">
+        <div class="margin-top-10px"><center><span class="top-text">TOP NEWS</span></center><hr class="margin-0"></div>
+        
+        <ion-slide-box
+        does-continue="true"
+            auto-play="true"
+            slide-interval="15000"
+            show-pager="false"
+         on-slide-changed="slideHasChanged($index)" ng-if="loaded" class="margin-bottom-10px">
+          <ion-slide options="options" ng-repeat="news in newslist track by news.title" ng-if="news.app_show_on_top == 1" slider="data.slider">
+           <div>
+            <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration " >
+            <div class="margin-bottom-10px">
+              
+              <div class="item item-body">
+                <img ng-src="{{app_url}}{{news.image}}" class="full-image">
+              </div>
+              <div class="item">
+                <h2>{{news.title}}</h2>
+                <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
+               <!--  <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
+              </div>
+              <!-- <div class="item">
+                <p>{{news.short_desc}}</p>
+              </div> -->
+            </div>
+            </a>       
         </div>
-        </a>       
-    </div>
-      <div ng-if="loaded" ng-repeat="news in newslist">
-        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 0">
-          <div class="item item-thumbnail-left thumbnail_list ">
-            <img ng-src="{{app_url}}{{news.image}}">
-            <div class="leftpadding">
-            <h2>{{news.title}}</h2>
-            <p>{{news.short_desc}}</p>
-            <span class="date_font">{{ news.published_date | fromNow}}</span>
-           </div>
-          </div>
-        </a>
-        </div>
-  </div>
-  <div ng-repeat="category in newscategories">
-          <ion-item class="item-assertive line-height-15px border-top-radius-25px margin-bottom-10px"
-                    ng-click="toggleGroup(category.Category.id)"
-                    ng-class="{active: isGroupShown(category.Category.id)}">
-            {{category.Category.name}}
-            <i class="icon float-right" ng-if="category.SubCategory.length>0" ng-class="isGroupShown(category.Category.id) ? 'ion-minus' : 'ion-plus'" ></i>
-          </ion-item>
-          <div ng-if="isGroupShown(category.Category.id)"  class="item-accordion line-height-15px">
-            <div class="list" >
-              <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist"  >
-              <div class="item item-thumbnail-left thumbnail_list">
+          </ion-slide>
+        </ion-slide-box>
+
+          <div ng-if="loaded" ng-repeat="news in newslist track by news.title">
+            <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 0">
+              <div class="item item-thumbnail-left thumbnail_list ">
                 <img ng-src="{{app_url}}{{news.image}}">
-               <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
                 <div class="leftpadding">
                 <h2>{{news.title}}</h2>
                 <p>{{news.short_desc}}</p>
@@ -79,32 +53,79 @@
                </div>
               </div>
             </a>
-             <a href="#/app/cat/{{category.Category.id}}" class="no_decoration">
-              <div class="item thumbnail_list">
-                <p class="click-more">More >></p>
-              </div>
-            </a>
             </div>
+      </div>
+      <div ng-repeat="category in newscategories">
+        <ion-item class="item-assertive line-height-15px border-top-radius-25px margin-bottom-10px"
+                  ng-click="toggleGroup(category.Category.id)"
+                  ng-class="{active: isGroupShown(category.Category.id)}">
+          {{category.Category.name}}
+          <i class="icon float-right" ng-if="category.SubCategory.length>0" ng-class="isGroupShown(category.Category.id) ? 'ion-minus' : 'ion-plus'" ></i>
+        </ion-item>
+        <div ng-if="isGroupShown(category.Category.id)"  class="item-accordion line-height-15px">
+          <div class="list" >
+            <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-repeat="news in catNewslist track by news.title"  >
+            <div class="item item-thumbnail-left thumbnail_list">
+              <img ng-src="{{app_url}}{{news.image}}">
+             <!-- <img ng-src="http://localhost/Projects/News/actonation{{news.image}}"> -->
+              <div class="leftpadding">
+              <h2>{{news.title}}</h2>
+              <p>{{news.short_desc}}</p>
+              <span class="date_font">{{ news.published_date | fromNow}}</span>
+             </div>
+            </div>
+          </a>
+           <a href="#/app/cat/{{category.Category.id}}" class="no_decoration">
+            <div class="item thumbnail_list">
+              <p class="click-more">More >></p>
+            </div>
+          </a>
           </div>
-           
+        </div>
+         
 
-         <!--  <ion-item class="item-accordion line-height-15px"
-                    ng-repeat="subcategory in category.SubCategory"
-                    ng-show="isGroupShown(category)"
-                    href="#/app/cat/{{subcategory.id}}"
-                    menu-close
-                    >
-            {{subcategory.name}}
-          </ion-item> -->
-  </div>
-  </ion-list>
+       <!--  <ion-item class="item-accordion line-height-15px"
+                  ng-repeat="subcategory in category.SubCategory"
+                  ng-show="isGroupShown(category)"
+                  href="#/app/cat/{{subcategory.id}}"
+                  menu-close
+                  >
+          {{subcategory.name}}
+        </ion-item> -->
+      </div>
+      </ion-list>
+    <!-- <div class="sticky-footer">add</div> -->
+  </ion-content>
+ 
     <div ng-if="!loaded" class="loading-news" ng-class="{ 'clear': error}">
       {{error_message}}
     </div>
+    
+  
     <!-- <ion-infinite-scroll
       ng-if="!moredata"
       on-infinite="loadMore()"
       distance="1%">
   </ion-infinite-scroll> -->
-  </ion-content>
+
+   
 </ion-view>
+<ion-footer-bar align-title="left" style="height: 15%;" ng-if="show_footer">
+
+    <ion-slide-box does-continue="true" auto-play="true"
+        slide-interval="3000" show-pager="false"
+     on-slide-changed="slideHasChanged($index)" ng-if="loaded" class="my-slide" style="width: 100%;">
+      <ion-slide options="options" ng-repeat="ads in adList track by ads.id" slider="data.slider">
+       
+        <a href="{{ads.Advertisment.url}}" class="no_decoration " >
+          <div class="">
+          <!-- <h1>{{ads.Advertisment.title}}</h1> -->
+            <img ng-src="{{app_url}}{{ads.Advertisment.image}}" class="full-image">
+          </div>
+        </a> 
+
+      </ion-slide>
+
+    </ion-slide-box>
+    <p class="icon ion-close" ng-click="hide_footer()"></p>
+</ion-footer-bar>  

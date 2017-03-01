@@ -5,13 +5,40 @@
   <ion-content>
     <ion-list>
     <div class="list">
-    <div ng-if="loaded" ng-repeat="news in newslist">
+    <ion-slide-box
+    does-continue="true"
+        auto-play="true"
+        slide-interval="15000"
+        show-pager="false"
+     on-slide-changed="slideHasChanged($index)" ng-if="loaded" class="margin-bottom-10px">
+      <ion-slide options="options" ng-repeat="news in newslist track by news.title" ng-if="news.app_show_on_top == 1" slider="data.slider">
+       <div>
+        <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration " >
+        <div class="margin-bottom-10px">
+          
+          <div class="item item-body">
+            <img ng-src="{{app_url}}{{news.image}}" class="full-image">
+          </div>
+          <div class="item">
+            <h2>{{news.title}}</h2>
+            <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
+           <!--  <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
+          </div>
+          <!-- <div class="item">
+            <p>{{news.short_desc}}</p>
+          </div> -->
+        </div>
+        </a>       
+    </div>
+      </ion-slide>
+    </ion-slide-box>
+    <!-- <div ng-if="loaded" ng-repeat="news in newslist">
         <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 1">
         <div class="thumbnail_list">
           <div class="item">
             <h2>{{news.title}}</h2>
-            <!-- <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p> -->
-            <!-- <span class="pinned-icon"><i class="ion-bookmark"></i></span> -->
+            <p>{{news.published_date | amDateFormat:'ddd, MMM D, YYYY, h:mm a'}}</p>
+            
           </div>
           <div class="item item-body">
             <img ng-src="{{app_url}}{{news.image}}">
@@ -19,7 +46,7 @@
           
         </div>
         </a>       
-      </div>
+      </div> -->
       <div ng-if="loaded" ng-repeat="news in newslist track by $id(news)">
         <a href="#/app/newsDetails/{{news.app_table_name}}/{{news.id}}" class="no_decoration" ng-if="news.app_show_on_top == 0">
           <div class="item item-thumbnail-left thumbnail_list">
@@ -73,4 +100,24 @@
       distance="1%">
   </ion-infinite-scroll> -->
   </ion-content>
+
 </ion-view>
+<ion-footer-bar align-title="left" style="height: 15%;" ng-if="show_footer">
+
+    <ion-slide-box does-continue="true" auto-play="true"
+        slide-interval="3000" show-pager="false"
+     on-slide-changed="slideHasChanged($index)" ng-if="loaded" class="my-slide" style="width: 100%;">
+      <ion-slide options="options" ng-repeat="ads in adList track by ads.id" slider="data.slider">
+       
+        <a href="{{ads.Advertisment.url}}" class="no_decoration " >
+          <div class="">
+          <!-- <h1>{{ads.Advertisment.title}}</h1> -->
+            <img ng-src="{{app_url}}{{ads.Advertisment.image}}" class="full-image">
+          </div>
+        </a> 
+
+      </ion-slide>
+
+    </ion-slide-box>
+    <p class="icon ion-close" ng-click="hide_footer()"></p>
+</ion-footer-bar> 

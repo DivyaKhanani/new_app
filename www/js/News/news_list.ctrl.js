@@ -1,8 +1,8 @@
 (function(){
 	var app=angular.module('starter.controllers');
 
-	app.controller("NewsCtrl", function($scope, NewsService, $q, $http,$stateParams, moment, API_URL,$rootScope,APP_URL){
-
+	app.controller("NewsCtrl", function($scope, NewsService, $q, $http,$stateParams,$state, moment, API_URL,$rootScope,APP_URL){
+		
 		var self = this;
 		$scope.newslist = [];
 		$rootScope.activepage=1;
@@ -14,7 +14,7 @@
 		// }, function(err){
 		// 	console.log(err);
 		// });
-
+		/*For Slider*/
 
 		// var urlbase = 'http://actonatepanel.com/news/actonation/api';
 		var	urlbase = API_URL;
@@ -25,19 +25,23 @@
 		$scope.cat_loaded = false;
 		$scope.error = false;
 
-		NewsService.getNewsCateories($stateParams).then(function(response){
-			$scope.cat_loaded = true;
-			$scope.newscategories = response.data;
-			if(response.data==0){
-				$scope.newscategories="";
-			}
-			//console.log($scope.newscategories);
-		}, function(err){
-			console.log(err);
-			$scope.error = true;
-			$scope.newscategories ="";
-			$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
-		});
+		$scope.getNewsCateoriesList=function(){
+			NewsService.getNewsCateories($stateParams).then(function(response){
+				$scope.cat_loaded = true;
+				$scope.newscategories = response.data;
+
+				console.log($scope.newscategories);
+				if(response.data==0){
+					$scope.newscategories="";
+				}
+				//console.log($scope.newscategories);
+			}, function(err){
+				console.log(err);
+				$scope.error = true;
+				$scope.newscategories ="";
+				$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
+			});
+		}
 		$scope.getNewsFeaturedList=function(){
 			NewsService.getNewsFeaturedList($stateParams).then(function(response){
 				$scope.loaded = true;
@@ -49,7 +53,7 @@
 				$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
 			});
 		}
-		$scope.groups = [];
+		/*$scope.groups = [];
 	  for (var i=0; i<10; i++) {
 	    $scope.groups[i] = {
 	      name: i,
@@ -58,7 +62,7 @@
 	    for (var j=0; j<3; j++) {
 	      $scope.groups[i].items.push(i + '-' + j);
 	    }
-	  }
+	  }*/
   
   /*
    * if given group is the selected group, deselect it
@@ -75,21 +79,33 @@
 	      $scope.showNewsListByCat(group);
 	    }
 	  };
+	  $scope.toggleGroupMenu = function(group) {
+
+	    if ($scope.isGroupShownMenu(group)) {
+	      $scope.shownGroupMenu = null;
+
+	    } else {
+	      $scope.shownGroupMenu = group;
+	    }
+	  };
+	  $scope.isGroupShownMenu = function(group) {
+	    return $scope.shownGroupMenu === group;
+	  };
 	  $scope.isGroupShown = function(group) {
 	    return $scope.shownGroup === group;
 	  };
+	  
 		$scope.app_url = APP_URL;
 		$scope.loaded = false;
 		$scope.error = false;
 		$rootScope.activepage=1;
 		$scope.showNewsListByCat = function function_name(cat_id) {
-			NewsService.getNewsListByCat(cat_id).then(function(response){	
-			$scope.catNewslist= response.data;
-
-			if($scope.catNewslist.status=="Error"){
-				$scope.error = true;
-				$scope.error_message = "Sorry couldn't load latest updates. Please try again later or check your internet connection.";
-			}
+				NewsService.getNewsListByCat(cat_id).then(function(response){	
+				$scope.catNewslist= response.data;
+				console.log($scope.catNewslist);
+				if(response.data.status=="Error"){
+					$scope.catNewslist= null;
+				}
 			}, function(err){
 				console.log(err);
 				$scope.error = true;
@@ -100,13 +116,16 @@
 
 	
 		$scope.refresh = function(){
-			$scope.newslist=[];
 			$scope.getNewsFeaturedList();
+			$scope.getNewsCateoriesList();
+			
 			$scope.moredata = false;
 			page = 1;
-			$scope.loadMore();
+			//$state.reload();
+			
 			
 		};
+		
 		$scope.loadMore = function() {
 			if(in_progress) { $scope.$broadcast('scroll.infiniteScrollComplete'); return; }
 			if($scope.moredata) { $scope.$broadcast('scroll.infiniteScrollComplete'); return; }
@@ -148,15 +167,40 @@
 		};
 
 		$scope.$on('$stateChangeSuccess', function() {
+			$scope.getNewsCateoriesList();
 			$scope.getNewsFeaturedList();
+			$scope.getAdvertisment(1);
+
 
 			//console.log($scope.newslist);
 		});
 
 		$scope.$on('refresh', function() {
+			$scope.getNewsCateoriesList();
+			
 			$scope.refresh();
-		});
 
+		});
+		$scope.show_footer=true;
+		$scope.hide_footer = function(){
+			$scope.show_footer=false;
+			
+			
+		};
+		$scope.getAdvertisment = function(cat_id) {
+				NewsService.getAdvertisment(cat_id).then(function(response){	
+				$scope.adList= response.data;
+				console.log($scope.adList);
+				if(response.data.status=="Error"){
+					$scope.adList= null;
+					$scope.show_footer=false;
+				}
+			}, function(err){
+				$scope.show_footer=false;
+			});
+			
+		}
+		
 	});
 
 		// $scope.update = function(selectedItem1){

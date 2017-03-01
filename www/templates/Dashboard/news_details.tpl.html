@@ -23,3 +23,22 @@
     </div>
   </ion-content>
 </ion-view>
+<ion-footer-bar align-title="left" style="height: 15%;" ng-if="show_footer">
+
+    <ion-slide-box does-continue="true" auto-play="true"
+        slide-interval="3000" show-pager="false"
+     on-slide-changed="slideHasChanged($index)" ng-if="loaded" class="my-slide" style="width: 100%;">
+      <ion-slide options="options" ng-repeat="ads in adList track by ads.id" slider="data.slider">
+       
+        <a href="{{ads.Advertisment.url}}" class="no_decoration " >
+          <div class="">
+          <!-- <h1>{{ads.Advertisment.title}}</h1> -->
+            <img ng-src="{{app_url}}{{ads.Advertisment.image}}" class="full-image">
+          </div>
+        </a> 
+
+      </ion-slide>
+
+    </ion-slide-box>
+    <p class="icon ion-close" ng-click="hide_footer()"></p>
+</ion-footer-bar> 

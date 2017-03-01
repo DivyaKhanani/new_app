@@ -25,7 +25,7 @@
 
 
 
-      var getNewsByCat = function(news_id){
+    var getNewsByCat = function(news_id){
         console.log("2--"+news_id);
       return $http.get(urlbase+'/getNewsByCat/'+news_id+'/'+page)
             success(function(response, status, headers, config) {
@@ -35,7 +35,7 @@
           error(function(data) {
                     alert("Sorry, could not load the latest updates. Please try again later.");
          });
-      };
+    };
 
 
       var loadmore1 = function(){
@@ -108,8 +108,8 @@
       error(function(response, status, headers, config) {
        });
     };
-    var getNewsListBySubCat = function(sub_table,sub_cat_id){
-    return $http.get(urlbase+'/getNewsListBySubCat/'+sub_table+'/'+sub_cat_id).
+    var getNewsListBySubCat = function(sub_table,sub_cat_id,page){
+    return $http.get(urlbase+'/getNewsListBySubCat/'+sub_table+'/'+sub_cat_id+'/'+page).
           success(function(response, status, headers, config) {
             console.log(response);
 
@@ -117,7 +117,16 @@
       error(function(data) {
        });
     };
+  var getAdvertisment = function(news_id){
+      return $http.get(urlbase+'/getAdvertisment/'+news_id)
+            success(function(response, status, headers, config) {
+              //var getNews = response.data;
 
+    }).
+          error(function(data) {
+                    alert("Sorry, could not load the latest updates. Please try again later.");
+         });
+    };
 	return {
 			getNews: getNews,
       getNewsFeaturedList: getNewsFeaturedList,
@@ -126,7 +135,8 @@
        getNewsSubCateories: getSubCateories,
        getNewsByCat:getNewsByCat,
        getNewsListByCat : getNewsListByCat,
-       getNewsListBySubCat  :getNewsListBySubCat
+       getNewsListBySubCat  :getNewsListBySubCat,
+       getAdvertisment: getAdvertisment
 		};
 
 	});
